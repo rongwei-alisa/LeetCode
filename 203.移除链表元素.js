@@ -2,8 +2,8 @@
  * @Description: file content
  * @Author: RongWei
  * @Date: 2020-01-23 20:53:35
- * @LastEditors  : RongWei
- * @LastEditTime : 2020-02-02 23:59:47
+ * @LastEditors: RongWei
+ * @LastEditTime: 2020-07-21 21:08:25
  */
 /*
  * @lc app=leetcode.cn id=203 lang=javascript
@@ -44,18 +44,47 @@
  * @return {ListNode}
  */
 var removeElements = function (head, val) {
-    var node = new ListNode();
-    node.next = head;
-    var cur = node;
-    while (cur) {
-        if (cur.next && cur.next.val === val) {
-            cur.next = cur.next.next;
-        } else {
-            cur = cur.next;
-        }
-    }
+    if (!head) return head;
 
-    return node.next;
+    let cur = head, prev;
+    let newHead = null;
+    while (cur) {
+        let next = cur.next;
+        if (cur.val === val) {
+            cur.next = null;
+            prev && (prev.next = next);
+        } else {
+            if (!newHead) {
+                newHead = cur;
+            }
+            prev = cur;
+        }
+
+        cur = next;
+    }
+    return newHead;
+
+    /**
+     * 方法一：构造一个head
+     */
+    // let newHead = new ListNode();
+    // newHead.next = head;
+    // let cur = newHead;
+    // while (cur) {
+    //     if (cur.next && cur.next.val === val) {
+    //         cur.next = cur.next.next;
+    //     } else {
+    //         cur = cur.next
+    //     }
+    // }
+    // return newHead.next;
+
+    /**
+     * 方法二：递归
+     */
+    // if (!head) return head;
+    // head.next = removeElements(head.next, val);
+    // return head.val === val ? head.next : head;
 };
 // @lc code=end
 

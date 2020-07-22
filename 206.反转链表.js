@@ -2,8 +2,8 @@
  * @Description: file content
  * @Author: RongWei
  * @Date: 2020-01-23 18:30:11
- * @LastEditors  : RongWei
- * @LastEditTime : 2020-01-23 19:08:10
+ * @LastEditors: RongWei
+ * @LastEditTime: 2020-07-21 20:30:50
  */
 /*
  * @lc app=leetcode.cn id=206 lang=javascript
@@ -45,22 +45,16 @@
  * @return {ListNode}
  */
 var reverseList = function (head) {
-    if (!head) return head;
-    var node = head;
-    var nodeList = [], newHead, lastNode;
-    do {
-        nodeList.unshift(node.val);
-        node = node.next;
-    } while (node)
-    for (var i = 0; i < nodeList.length; i += 1) {
-        var node = new ListNode(nodeList[i]);
-        lastNode && (lastNode.next = node);
-        lastNode = node;
-        if (i === 0) {
-            newHead = node;
-        }
+    if (!head || !head.next) return head;
+    let prev = null, cur = head;
+    while (cur.next) {
+        let next = cur.next;
+        cur.next = prev;
+        prev = cur;
+        cur = next;
     }
-    return newHead;
+    cur.next = prev;
+    return cur;
 };
 // @lc code=end
 
