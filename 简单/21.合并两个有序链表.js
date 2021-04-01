@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-19 17:13:22
- * @LastEditTime: 2021-03-19 22:23:59
+ * @LastEditTime: 2021-04-01 15:52:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /LeetCode/简单/21.合并两个有序链表.js
@@ -26,30 +26,50 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function (l1, l2) {
-	if (!l1 && !l2) return l1;
+	// if (!l1 && !l2) return l1;
 
-	var l3 = new ListNode(), head, hasHead = false;
+	// var l3 = new ListNode(), head, hasHead = false;
+	// while (l1 || l2) {
+	// 	if (!l1 || !l2) {
+	// 		l3.next = l1 || l2;
+	// 		l1 = null;
+	// 		l2 = null;
+	// 	} else {
+	// 		if (l1.val <= l2.val) {
+	// 			l3.next = l1;
+	// 			l1 = l1.next;
+	// 		} else {
+	// 			l3.next = l2;
+	// 			l2 = l2.next
+	// 		}
+	// 	}
+	// 	if (!hasHead) {
+	// 		head = l3.next;
+	// 		hasHead = true;
+	// 	}
+	// 	l3 = l3.next;
+	// }
+	// return head;
+
+	if (!l1 || !l2) return l1 || l2;
+	var l3 = new ListNode('head'), head = l3;
 	while (l1 || l2) {
 		if (!l1 || !l2) {
 			l3.next = l1 || l2;
-			l1 = null;
-			l2 = null;
+			l1 && (l1 = null);
+			l2 && (l2 = null);
 		} else {
 			if (l1.val <= l2.val) {
 				l3.next = l1;
 				l1 = l1.next;
 			} else {
 				l3.next = l2;
-				l2 = l2.next
+				l2 = l2.next;
 			}
-		}
-		if (!hasHead) {
-			head = l3.next;
-			hasHead = true;
 		}
 		l3 = l3.next;
 	}
-	return head;
+	return head.next;
 };
 // @lc code=end
 
