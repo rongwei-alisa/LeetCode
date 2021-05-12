@@ -31,13 +31,11 @@ var maxDepth = function (root) {
     var len = queue.length;
     while (len) {
       var node = queue.shift();
-      if (node) {
-        if (node.left) {
-          queue.push(node.left);
-        }
-        if (node.right) {
-          queue.push(node.right);
-        }
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
       }
       len--;
     }
