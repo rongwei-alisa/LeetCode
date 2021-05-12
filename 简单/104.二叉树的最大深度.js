@@ -1,12 +1,4 @@
 /*
- * @Author: your name
- * @Date: 2021-05-12 18:47:50
- * @LastEditTime: 2021-05-12 18:57:22
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /LeetCode/简单/104.二叉树的最大深度.js
- */
-/*
  * @lc app=leetcode.cn id=104 lang=javascript
  *
  * [104] 二叉树的最大深度
@@ -25,9 +17,33 @@
  * @param {TreeNode} root
  * @return {number}
  */
+// 深度优先 DFS
 var maxDepth = function (root) {
   if (!root) return 0;
   return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+};
+
+// 广度优先 BFS
+var maxDepth = function (root) {
+  if (!root) return 0;
+  var depth = 0, queue = [root];
+  while (queue.length) {
+    var len = queue.length;
+    while (len) {
+      var node = queue.shift();
+      if (node) {
+        if (node.left) {
+          queue.push(node.left);
+        }
+        if (node.right) {
+          queue.push(node.right);
+        }
+      }
+      len--;
+    }
+    depth++;
+  }
+  return depth;
 };
 // @lc code=end
 
