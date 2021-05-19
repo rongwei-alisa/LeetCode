@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-19 19:31:32
- * @LastEditTime: 2021-05-19 20:45:16
+ * @LastEditTime: 2021-05-19 20:46:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /LeetCode/简单/118.杨辉三角.js
@@ -38,7 +38,7 @@ var generate = function (numRows, result = []) {
   return result;
 };
 
-// 迭代
+// 迭代-动态规划
 var generate = function (numRows) {
   var triangle = [];
   for (var i = 0; i < numRows; i++) {
