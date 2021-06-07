@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-06-04 09:35:31
- * @LastEditTime: 2021-06-04 10:17:56
+ * @LastEditTime: 2021-06-07 09:41:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /LeetCode/简单/168.excel表列名称.js
@@ -17,6 +17,7 @@
  * @param {number} columnNumber
  * @return {string}
  */
+// 递归
 var convertToTitle = function (columnNumber) {
   const charaArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   if (columnNumber <= 26) {
@@ -26,5 +27,7 @@ var convertToTitle = function (columnNumber) {
   const remainder = (columnNumber - 1) % 26;
   return convertToTitle(quotient) + charaArr[remainder];
 };
+
+// 递推
 // @lc code=end
 
