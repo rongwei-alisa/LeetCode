@@ -1,12 +1,4 @@
 /*
- * @Author: your name
- * @Date: 2021-06-10 09:33:00
- * @LastEditTime: 2021-06-10 23:05:19
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /LeetCode/简单/190.颠倒二进制位.js
- */
-/*
  * @lc app=leetcode.cn id=190 lang=javascript
  *
  * [190] 颠倒二进制位
@@ -18,26 +10,21 @@
  * @return {number} - a positive integer
  */
 var reverseBits = function (n) {
-  var binaryStr = n.toString(2);
-  binaryStr = '0'.repeat(32 - binaryStr.length) + binaryStr;
-
-  // 二进制转十进制
-  var resultBinary = binaryStr.split('').reverse().join('');
-  return parseInt(resultBinary, 2);
-
-  // 十进制转颠倒二进制字符串
-  // var binaryStr = '', num = n, remainder = 0;
-  // while (num) {
-  //   remainder = num % 2;
-  //   num = num >> 1;
-  //   binaryStr = remainder + binaryStr;
-  // }
-
+  // var result = 0;
   // for (var i = 0; i < 32; i++) {
-  //   if (binaryStr[i] === '0') continue;
-  //   result += Math.pow(2, i);
+  //   // result << 1 : 将每一位逐步左移，也可以一次性移动 31 - i 位
+  //   // n & 1 : 取 n 的二进制末位数，n 的末位是 1 ，结果是 1；n 的末位是 0，结果是 0
+  //   result = (result << 1) + (n & 1);
+  //   // 或：result = result + (n & 1) << (31 - i);
+  //   n = n >>> 1;
   // }
-  // return result;
+  // return result >>> 0;
+  let rev = 0;
+  for (let i = 0; i < 32 && n > 0; ++i) {
+    rev |= (n & 1) << (31 - i);
+    n >>>= 1;
+  }
+  return rev >>> 0;
 };
 // @lc code=end
 
