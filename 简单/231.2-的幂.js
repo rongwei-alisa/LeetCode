@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-06-29 09:48:44
- * @LastEditTime: 2021-06-29 10:45:26
+ * @LastEditTime: 2021-06-30 10:20:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /LeetCode/简单/231.2-的幂.js
@@ -18,15 +18,16 @@
  * @return {boolean}
  */
 var isPowerOfTwo = function (n) {
-  if (n <= 0) return false;
-  let tempNum = 1;
-  for (var i = 0; i < 31; i++) {
-    if (tempNum === n) {
-      return true;
-    }
-    tempNum = tempNum << 1;
-  }
-  return false;
+  // if (n <= 0) return false;
+  // let tempNum = 1;
+  // for (var i = 0; i < 31; i++) {
+  //   if (tempNum === n) {
+  //     return true;
+  //   }
+  //   tempNum = tempNum << 1;
+  // }
+  // return false;
+  return n > 0 && (n & (n - 1)) === 0;
 };
 // @lc code=end
 
