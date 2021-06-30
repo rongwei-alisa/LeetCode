@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-06-30 09:38:39
- * @LastEditTime: 2021-06-30 09:47:17
+ * @LastEditTime: 2021-06-30 10:03:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /LeetCode/简单/232.用栈实现队列.js
@@ -17,8 +17,8 @@
  * Initialize your data structure here.
  */
 var MyQueue = function () {
-  this.queue = [];
-  this.length = 0;
+  this.inStack = [];
+  this.outStack = [];
 };
 
 /**
@@ -27,8 +27,7 @@ var MyQueue = function () {
  * @return {void}
  */
 MyQueue.prototype.push = function (x) {
-  this.queue.push(x);
-  this.length++;
+  this.inStack.push(x);
 };
 
 /**
@@ -36,10 +35,10 @@ MyQueue.prototype.push = function (x) {
  * @return {number}
  */
 MyQueue.prototype.pop = function () {
-  if (this.length) {
-    this.length--;
-    return this.queue.shift();
+  if (!this.outStack.length) {
+    this.in2out();
   }
+  return this.outStack.pop();
 };
 
 /**
@@ -47,9 +46,10 @@ MyQueue.prototype.pop = function () {
  * @return {number}
  */
 MyQueue.prototype.peek = function () {
-  if (this.length) {
-    return this.queue[0];
+  if (!this.outStack.length) {
+    this.in2out();
   }
+  return this.outStack[this.outStack.length - 1];
 };
 
 /**
@@ -57,8 +57,17 @@ MyQueue.prototype.peek = function () {
  * @return {boolean}
  */
 MyQueue.prototype.empty = function () {
-  return !this.length;
+  return !this.inStack.length && !this.outStack.length;
 };
+
+/**
+ * @return {void}
+ */
+MyQueue.prototype.in2out = function () {
+  while (this.inStack.length) {
+    this.outStack.push(this.inStack.pop());
+  }
+}
 
 /**
  * Your MyQueue object will be instantiated and called as such:
