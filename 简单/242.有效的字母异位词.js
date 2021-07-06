@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-07-06 09:10:30
- * @LastEditTime: 2021-07-06 09:43:34
- * @LastEditors: your name
+ * @LastEditTime: 2021-07-06 20:55:33
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /LeetCode/简单/242.有效的字母异位词.js
  */
@@ -19,13 +19,14 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-  for (var i = 0; i < s.length; i++) {
-    var len = t.length;
-    t = t.replace(s[i], '');
-    if (t.length === len) {
-      return false;
-    }
-  }
-  return t.length === 0;
+  // for (var i = 0; i < s.length; i++) {
+  //   var len = t.length;
+  //   t = t.replace(s[i], '');
+  //   if (t.length === len) {
+  //     return false;
+  //   }
+  // }
+  // return t.length === 0;
+  return [...s].sort().join('') === [...t].sort().join('');
 };
 // @lc code=end
