@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 23:31:17
- * @LastEditTime: 2021-07-12 23:43:20
+ * @LastEditTime: 2021-07-13 00:00:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /LeetCode/简单/268.丢失的数字.js
@@ -28,5 +28,24 @@ var missingNumber = function (nums) {
     }
   }
 };
+
+// 位运算
+var missingNumber = function (nums) {
+  let missing = nums.length;
+  for (var i = 0; i < nums.length; i++) {
+    missing ^= i ^ nums[i];
+  }
+  return missing;
+}
+
+// 高斯求和法
+var missingNumber = function (nums) {
+  var total = (nums.length + 1) * nums.length / 2,
+    numsTotal = 0;
+  for (var i = 0; i < nums.length; i++) {
+    numsTotal += nums[i];
+  }
+  return total - numsTotal;
+}
 // @lc code=end
 
