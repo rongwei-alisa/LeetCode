@@ -2,7 +2,7 @@
  * @Author: RongWei
  * @Date: 2021-11-08 09:43:01
  * @LastEditors: RongWei
- * @LastEditTime: 2021-11-08 09:59:11
+ * @LastEditTime: 2021-11-30 10:07:52
  * @Description: file content
  */
 /*
@@ -28,15 +28,17 @@ var validPalindrome = function (s) {
     }
     return true;
   };
-  if (isRemo(s)) {
-    return true;
-  }
-  for (let k = 0; k < s.length; k++) {
-    if (isRemo(s.substring(0, k) + s.substring(k + 1))) {
-      return true;
+
+  let low = 0, high = s.length - 1;
+  while (low < high) {
+    if (s[low] === s[high]) {
+      low++;
+      high--;
+    } else {
+      return isRemo(s.substring(low + 1, high + 1)) || isRemo(s.substring(low, high));
     }
   }
-  return false;
+  return true;
 };
 // @lc code=end
 
