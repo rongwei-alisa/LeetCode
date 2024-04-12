@@ -1,11 +1,4 @@
 /*
- * @Author: RongWei
- * @Date: 2021-10-15 09:41:29
- * @LastEditors: RongWei
- * @LastEditTime: 2021-10-15 14:18:02
- * @Description: file content
- */
-/*
  * @lc app=leetcode.cn id=605 lang=javascript
  *
  * [605] 种花问题
@@ -51,28 +44,41 @@
 // };
 
 // 贪心
-var canPlaceFlowers = function (flowerbed, n) {
-  let prev = -1; // 上一个 1 的位置
-  let count = 0; // 可种植花的个数
-  for (let i = 0; i < flowerbed.length; i++) {
-    if (flowerbed[i] === 1) {
-      if (prev === -1) {
-        count += Math.floor(i / 2);
-      } else {
-        count += Math.floor((i - prev - 2) / 2);
-      }
-      if (count >= n) return true;
-      prev = i;
-    }
-  }
+// var canPlaceFlowers = function (flowerbed, n) {
+//   let prev = -1; // 上一个 1 的位置
+//   let count = 0; // 可种植花的个数
+//   for (let i = 0; i < flowerbed.length; i++) {
+//     if (flowerbed[i] === 1) {
+//       if (prev === -1) {
+//         count += Math.floor(i / 2);
+//       } else {
+//         count += Math.floor((i - prev - 2) / 2);
+//       }
+//       if (count >= n) return true;
+//       prev = i;
+//     }
+//   }
 
-  if (prev === -1) {
-    // 所有全是 0 
-    count += Math.floor((flowerbed.length + 1) / 2);
-  } else {
-    count += Math.floor((flowerbed.length - prev - 1) / 2);
+//   if (prev === -1) {
+//     // 所有全是 0 
+//     count += Math.floor((flowerbed.length + 1) / 2);
+//   } else {
+//     count += Math.floor((flowerbed.length - prev - 1) / 2);
+//   }
+//   return count >= n;
+// }
+
+var canPlaceFlowers = function(flowerbed, n) {
+  for (let i = 0; i < flowerbed.length; i++) {
+      let left = flowerbed[i - 1] || 0;
+      let right = flowerbed[i + 1] || 0;
+      if (flowerbed[i] === 0 && left === 0 && right === 0) {
+          flowerbed[i] = 1;
+          n--;
+      }
+      if (n <= 0) return true;
   }
-  return count >= n;
-}
+  return false;
+};
 // @lc code=end
 
